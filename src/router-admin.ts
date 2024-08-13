@@ -13,7 +13,7 @@ routerAdmin
   .post("/signup", restaurantController.processSignup);
 
 
-/** PRODUCTS **/
+/** PRODUCTS ***/
   
 
 /** USER **/
