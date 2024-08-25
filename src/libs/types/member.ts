@@ -1,7 +1,7 @@
 import { Types } from "mongoose";
 import { MemberStatus, MemberType } from "../enums/member.enum";
 import { Request } from "express";
-// import { Session } from "express-session";
+import { Session } from "express-session";
 
 export interface Member {
   _id: Types.ObjectId;
@@ -47,15 +47,15 @@ export interface MemberUpdateInput {
   memberImage?: string;
 }
 
-// export interface ExtendedRequest extends Request {
-//   member: Member;
-//   file: Express.Multer.File;
-//   files: Express.Multer.File[];
-// }
+export interface ExtendedRequest extends Request {
+  member: Member;
+  file: Express.Multer.File;
+  files: Express.Multer.File[];
+}
 
-// export interface AdminRequest extends Request {
-//   member: Member;
-//   session: Session & { member: Member };
-//   file: Express.Multer.File;
-//   files: Express.Multer.File[];
-// }
+export interface AdminRequest extends Request {
+  member: Member;
+  session: Session & { member: Member };
+  file: Express.Multer.File;
+  files: Express.Multer.File[];
+}
