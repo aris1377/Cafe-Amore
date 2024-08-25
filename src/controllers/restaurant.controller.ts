@@ -4,6 +4,7 @@ import MemberService from "../models/Member.service";
 import { AdminRequest, LoginInput, MemberInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
 import session from "express-session";
+import { Message } from "../libs/Error";
 
 const memberService = new MemberService();
 const restaurantController: T = {};
@@ -72,6 +73,20 @@ restaurantController.processLogin = async (
     });
   } catch (err) {
     console.log("Error, processLogin:", err);
+    res.send(err);
+  }
+};
+
+restaurantController.checkAuthSession = async (
+  req: AdminRequest,
+  res: Response
+) => {
+  try {
+    console.log("checkAuthSession");
+    if (req.session?.member) res.send(`Hi, ${req.session.member.memberNick}`);
+    else res.send(Message.NOT_AUTHENTICATED);
+  } catch (err) {
+    console.log("Error, checkAuthSession:", err);
     res.send(err);
   }
 };
