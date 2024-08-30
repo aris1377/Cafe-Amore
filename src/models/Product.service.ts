@@ -1,7 +1,9 @@
+import ProductModel from "../schema/Product.model";
 
 class ProductServive{
-    getAllProducts() {
-        throw new Error("Method not implemented.");
+    private readonly productModel;
+    constructor() {
+        this.productModel = ProductModel;
     }
 }
 
