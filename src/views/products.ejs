@@ -51,7 +51,7 @@
               <td><%= value.productName %></td>
               <td><%= value.productCollection %></td>
               <td>
-                <%= value.productCollection === 'COFFEE' || 'SMOTHIE' ? value.productVolume
+                <%= value.productCollection === 'COFFEE'  || 'SMOOTHIE'? value.productVolume
                 :value.productSize %>
               </td>
               <td><%= value.productPrice %></td>
@@ -128,7 +128,7 @@
               <label>Product Type</label>
               <select class="product-collection" name="productCollection">
                 <option value="SALAD" selected>Salad</option>
-                <option value="SMOTHIE" selected>Smothie</option>
+                <option value="SMOOTHIE" selected>Smoothie</option>
                 <option value="CAKE" selected>Cake</option>
                  <option value="COFFEE">Coffee</option>
                 <option value="OTHER">Other</option>
@@ -152,15 +152,6 @@
                 <option value="0.3" selected>0,3 liters</option>
                 <option value="0.4">0,4 liters</option>
               </select>
-
-               <div class="half-input" id="product-volume" style="display: none">
-              <label>Smothie Volume</label>
-              <select class="product-volume" name="productVolume">
-                <option value="0.2">0,2 liters</option>
-                <option value="0.3" selected>0,3 liters</option>
-                <option value="0.4">0,4 liters</option>
-              </select>
-            </div>
             </div>
           </div>
           <div class="long-input">

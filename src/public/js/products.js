@@ -6,7 +6,7 @@ $(function () {
     if (selectedValue === "COFFEE") {
       $("#product-collection").hide();
       $("#product-volume").show();
-    } else if (selectedValue === "SMOTHIE") {
+    } else if (selectedValue === "SMOOTHIE") {
        $("#product-collection").hide();
       $("#product-volume").show();
     } else {
@@ -67,10 +67,10 @@ function validateForm() {
 }
 
 function previewFileHandler(input, order) {
-  const imgClassNmae = input.className;
+  const imgClassName = input.className;
   console.log("input:", input);
 
-  const file = $(`.${imgClassNmae}`).get(0).files[0];
+  const file = $(`.${imgClassName}`).get(0).files[0];
   const fileType = file["type"];
   const validMimeTypes = ["image/jpg", "image/jpeg", "image/png"];
   if (!validMimeTypes.includes(fileType)) {

@@ -16,7 +16,7 @@ const store = new MongoDBStore({
   collection: "sessions",
 });
 
-//1-- ENTRANCE (kirish)
+//1-- ENTRANCE (krish)
 const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static("./uploads"));
