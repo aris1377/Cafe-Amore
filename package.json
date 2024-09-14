@@ -1,5 +1,5 @@
 {
-  "name": "Cafe-Amore",
+  "name": "cafe-amore",
   "version": "1.0.0",
   "description": "This is Cafe Amore backend",
   "main": "src/server.ts",

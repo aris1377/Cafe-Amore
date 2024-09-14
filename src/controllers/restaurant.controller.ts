@@ -106,6 +106,8 @@ restaurantController.logout = async (req: AdminRequest, res: Response) => {
 };
 
 
+
+/** USER **/
 restaurantController.getUsers = async (req: Request, res: Response) => {
   try {
     console.log("getUsers");
