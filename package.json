@@ -1,7 +1,7 @@
 {
-  "name": "fox-in-the-snow",
+  "name": "Cafe-Amore",
   "version": "1.0.0",
-  "description": "This is fox in the snow backend",
+  "description": "This is Cafe Amore backend",
   "main": "src/server.ts",
   "scripts": {
     "start": "ts-node src/server.ts",

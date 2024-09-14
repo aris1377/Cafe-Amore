@@ -7,6 +7,7 @@ import Errors from "../libs/Error";
 const memberService = new MemberService();
 /** REACT **/
 const memberController: T = {};
+//rter
 
 memberController.signup = async (req: Request, res: Response) => {
   try {
