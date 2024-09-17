@@ -54,6 +54,6 @@ app.set("view engine", "ejs");
 
 //4--ROUTES
 app.use("/admin", routerAdmin); // BSSR: EJS
-app.use("/", router); // SPA: REACT//bu desgin pettern middleware deyiladi
+app.use("/", router); // SPA: REACT/
 
 export default app;

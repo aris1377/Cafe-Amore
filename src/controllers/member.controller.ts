@@ -1,10 +1,19 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { T } from "../libs/types/common";
 import MemberService from "../models/Member.service";
-import { LoginInput, Member, MemberInput } from "../libs/types/member";
+import {
+  ExtendedRequest,
+  LoginInput,
+  Member,
+  MemberInput,
+  MemberUpdateInput,
+} from "../libs/types/member";
+import AuthService from "../models/Auth.service";
+import { AUTH_TIMER } from "../libs/config";
 import Errors from "../libs/Error";
 
 const memberService = new MemberService();
+const authService = new AuthService();
 /** REACT **/
 const memberController: T = {};
 //rter
@@ -14,7 +23,8 @@ memberController.signup = async (req: Request, res: Response) => {
     console.log("signup");
     const input: MemberInput = req.body,
       result: Member = await memberService.signup(input);
-    //TODO: TOOKENS AUTH
+      const token = await authService.createToken(result);
+
 
     res.json({ member: result });
   } catch (err) {
@@ -28,9 +38,9 @@ memberController.login = async (req: Request, res: Response) => {
   try {
     console.log("login");
     const input: LoginInput = req.body,
-      result = await memberService.login(input);
-    //TODO: TOOKENS AUTH
-
+      result = await memberService.login(input),
+    token = await authService.createToken(result);
+   
     res.json({ member: result });
   } catch (err) {
     console.log("Error, login:", err);

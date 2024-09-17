@@ -1,5 +1,8 @@
-export const MORGAN_FORMAT = `:method :url :response-time [:status] \n`;
+// morgan format
+export const AUTH_TIMER = 24;
 
+
+export const MORGAN_FORMAT = `:method :url :response-time [:status] \n`;
 import mongoose from "mongoose";
 export const shapeIntoMongooseObjecId = (target: any) => {
   return typeof target === "string"

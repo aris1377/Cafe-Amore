@@ -1,3 +1,4 @@
+
 export enum HttpCode {
   OK = 200,
   CREATED = 201,
@@ -18,14 +19,15 @@ export enum Message {
   NO_MEMBER_NICK = "No member with that member nick!",
   BLOCKED_USER = "You have been blocked, contact restaurant!",
   WRONG_PASSWORD = "Wrong password, please try again!",
-  NOT_AUTHENTICATED = "You are not authorized, Please login first!",
+  MOT_AUTHENTICATED = "You are not authorized, Please login first!",
   TOKEN_CREATION_FAILED = "Token creation error",
 }
 
 class Errors extends Error {
   public code: HttpCode;
+
   public message: Message;
-  
+
   static standard = {
     code: HttpCode.INTERNAL_SERVER_ERROR,
     message: Message.SOMETHING_WENT_WRONG,
