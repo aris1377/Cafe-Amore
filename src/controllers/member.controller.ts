@@ -10,7 +10,7 @@ import {
 } from "../libs/types/member";
 
 import { AUTH_TIMER } from "../libs/config";
-import Errors, { HttpCode } from "../libs/Error";
+import Errors, { HttpCode, Message } from "../libs/Error";
 import MemberService from "../models/Member.service";
 import AuthService from "../models/Auth.service";
 
@@ -45,7 +45,7 @@ memberController.login = async (req: Request, res: Response) => {
     console.log("login");
     const input: LoginInput = req.body,
       result = await memberService.login(input),
-      
+
       token = await authService.createToken(result);
      res.cookie("accessToken", token, {
       maxAge: AUTH_TIMER * 3600 * 1000,
@@ -60,4 +60,22 @@ memberController.login = async (req: Request, res: Response) => {
   }
 };
 
+memberController.verifyAuth = async (
+  req: ExtendedRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const token = req.cookies["accessToken"];
+    if (token) req.member = await authService.ckeckAuth(token);
+    if (!req.member)
+      throw new Errors(HttpCode.UNAUTHORIZED, Message.MOT_AUTHENTICATED);
+
+    next();
+  } catch (err) {
+    console.log("Error, verifyAuth:", err);
+    if (err instanceof Errors) res.status(err.code).json(err);
+    else res.status(Errors.standard.code).json(Errors.standard);
+  }
+};
 export default memberController;
