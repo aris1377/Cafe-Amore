@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { T } from "../libs/types/common";
-import MemberService from "../models/Member.service";
+
 import {
   ExtendedRequest,
   LoginInput,
@@ -8,25 +8,31 @@ import {
   MemberInput,
   MemberUpdateInput,
 } from "../libs/types/member";
-import AuthService from "../models/Auth.service";
+
 import { AUTH_TIMER } from "../libs/config";
-import Errors from "../libs/Error";
+import Errors, { HttpCode } from "../libs/Error";
+import MemberService from "../models/Member.service";
+import AuthService from "../models/Auth.service";
 
 const memberService = new MemberService();
 const authService = new AuthService();
-/** REACT **/
+
 const memberController: T = {};
-//rter
+
 
 memberController.signup = async (req: Request, res: Response) => {
   try {
     console.log("signup");
     const input: MemberInput = req.body,
-      result: Member = await memberService.signup(input);
-      const token = await authService.createToken(result);
+      result: Member = await memberService.signup(input),
 
+      token = await authService.createToken(result);
+      res.cookie("accessToken", token, {
+      maxAge: AUTH_TIMER * 3600 * 1000,
+      httpOnly: false,
+    });
 
-    res.json({ member: result });
+    res.status(HttpCode.CREATED).json({ member: result, accessToken: token });
   } catch (err) {
     console.log("Error, signup:", err);
     if (err instanceof Errors) res.status(err.code).json(err);
@@ -39,9 +45,14 @@ memberController.login = async (req: Request, res: Response) => {
     console.log("login");
     const input: LoginInput = req.body,
       result = await memberService.login(input),
-    token = await authService.createToken(result);
-   
-    res.json({ member: result });
+      
+      token = await authService.createToken(result);
+     res.cookie("accessToken", token, {
+      maxAge: AUTH_TIMER * 3600 * 1000,
+      httpOnly: false,
+    });
+
+    res.status(HttpCode.CREATED).json({ member: result, accessToken: token });
   } catch (err) {
     console.log("Error, login:", err);
     if (err instanceof Errors) res.status(err.code).json(err);

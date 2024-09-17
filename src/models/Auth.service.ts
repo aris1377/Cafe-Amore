@@ -33,13 +33,13 @@ class AuthService {
     });
   }
 
-  public async ckeckAuth(token: string): Promise<Member> {
-    const result: Member = (await jwt.verify(
-      token,
-      this.secretToken
-      )) as Member;
-      console.log(`---[AUTH] memberNick ${result.memberNick}---`);
-      return result;
-  }
+  // public async ckeckAuth(token: string): Promise<Member> {
+  //   const result: Member = (await jwt.verify(
+  //     token,
+  //     this.secretToken
+  //     )) as Member;
+  //     console.log(`---[AUTH] memberNick ${result.memberNick}---`);
+  //     return result;
+  // }
 }
 export default AuthService;
