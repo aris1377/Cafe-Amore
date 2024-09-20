@@ -19,13 +19,12 @@ export interface Member {
 }
 
 export interface MemberInput {
-  processSignup(): unknown;
   memberType?: MemberType;
   memberStatus?: MemberStatus;
   memberNick: string;
   memberPhone: string;
   memberPassword: string;
-  memberAddress: string;
+  memberAddress?: string;
   memberDesc?: string;
   memberImage?: string;
   memberPoints?: number;

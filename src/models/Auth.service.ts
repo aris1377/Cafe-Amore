@@ -13,7 +13,7 @@ class AuthService {
     this.secretToken = process.env.SECRET_TOKEN as string;
   }
 
-  public async createToken(payload: Member) {
+ public async createToken(payload: Member) {
     return new Promise((resolve, reject) => {
       const duration = `${AUTH_TIMER}h`;
       jwt.sign(
@@ -32,6 +32,7 @@ class AuthService {
       );
     });
   }
+
 
   public async ckeckAuth(token: string): Promise<Member> {
     const result: Member = (await jwt.verify(

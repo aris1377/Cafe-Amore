@@ -24,20 +24,19 @@ class MemberService {
   }
 
 
-  public async signup(input: MemberInput): Promise<Member> {
+   public async signup(input: MemberInput): Promise<Member> {
     const salt = await bcrypt.genSalt();
     input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
 
     try {
       const result = await this.memberModel.create(input);
       result.memberPassword = "";
-      return result.toJSON();
+      return result.toJSON() as Member;
     } catch (err) {
       console.error("Error, model:signup", err);
       throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE);
     }
   }
-
   public async login(input: LoginInput): Promise<Member> {
     const member = await this.memberModel
       .findOne(
