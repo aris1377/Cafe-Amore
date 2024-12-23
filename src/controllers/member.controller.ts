@@ -81,7 +81,7 @@ memberController.logout = (req: ExtendedRequest, res: Response) => {
     if (err instanceof Errors) res.status(err.code).json(err);
     else res.status(Errors.standard.code).json(Errors.standard);
   }
-};
+}
 
 memberController.getMemberDetail = async (
   req: ExtendedRequest,

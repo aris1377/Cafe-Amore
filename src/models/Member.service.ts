@@ -109,7 +109,8 @@ class MemberService {
 					_id: memberId, 
 					memberType: MemberType.USER,
 					memberStatus: MemberStatus.ACTIVE,
-				},
+        },
+        //nimani ozgartirish
 				{$inc: { memberPoints: point} },
 				{ new: true }
 		).exec();

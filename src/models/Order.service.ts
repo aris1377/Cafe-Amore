@@ -51,7 +51,6 @@ class OrderService {
       throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
     }
   }
-  
   private async recordOrderItem(
     orderId: ObjectId,
     input: OrderItemInput[]
