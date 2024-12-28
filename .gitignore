@@ -4,3 +4,4 @@ dist
 .env
 comment.txt
 uploads
+.env.production
