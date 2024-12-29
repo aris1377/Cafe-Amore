@@ -21,6 +21,8 @@ const store = new MongoDBStore({
 //1-- ENTRANCE (krish)
 const app = express();
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "dist")));
+app.use(express.static(path.join(__dirname, "public/css")));
 app.use("/uploads", express.static("./uploads"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -52,6 +54,8 @@ app.use(function (req, res, next) {
 });
 //3-- VIEWS
 app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "./views/ejs"));
+app.set("views", path.join(__dirname, "./views/includes"));
 app.set("view engine", "ejs");
 
 //4--ROUTES
