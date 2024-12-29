@@ -54,7 +54,6 @@ app.use(function (req, res, next) {
 });
 //3-- VIEWS
 app.set("views", path.join(__dirname, "views"));
-app.set("views", path.join(__dirname, "./views/ejs"));
 app.set("view engine", "ejs");
 
 //4--ROUTES
